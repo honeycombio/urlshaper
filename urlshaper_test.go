@@ -58,6 +58,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{},
 		Shape:       "/other/path",
+		PathShape:   "/other/path",
+		QueryShape:  "",
 	}},
 	// basic path match
 	{"/about/en/books", Result{
@@ -67,6 +69,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{"lang": []string{"en"}},
 		Shape:       "/about/:lang/books",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "",
 	}},
 	{"/about/fr/books", Result{
 		URI:         "/about/fr/books",
@@ -75,6 +79,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{"lang": []string{"fr"}},
 		Shape:       "/about/:lang/books",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "",
 	}},
 	// resty + query
 	{"/about/fr/books?isbn=123", Result{
@@ -84,6 +90,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{"isbn": []string{"123"}},
 		PathFields:  url.Values{"lang": []string{"fr"}},
 		Shape:       "/about/:lang/books?isbn=?",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "isbn=?",
 	}},
 	// resty + query
 	{"http://example.com:8080/about/fr/books?isbn=123", Result{
@@ -93,6 +101,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{"isbn": []string{"123"}},
 		PathFields:  url.Values{"lang": []string{"fr"}},
 		Shape:       "/about/:lang/books?isbn=?",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "isbn=?",
 	}},
 	// multiple query params
 	{"/about/fr/books?isbn=123&title=aoeu", Result{
@@ -102,6 +112,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{"isbn": []string{"123"}, "title": []string{"aoeu"}},
 		PathFields:  url.Values{"lang": []string{"fr"}},
 		Shape:       "/about/:lang/books?isbn=?&title=?",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "isbn=?&title=?",
 	}},
 	// alphebatize query params
 	{"/about/fr/books?title=aoeu&isbn=123", Result{
@@ -111,6 +123,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{"isbn": []string{"123"}, "title": []string{"aoeu"}},
 		PathFields:  url.Values{"lang": []string{"fr"}},
 		Shape:       "/about/:lang/books?isbn=?&title=?",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "isbn=?&title=?",
 	}},
 	// multiple resty path vars
 	{"/about/en/books/123456", Result{
@@ -120,6 +134,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{"lang": []string{"en"}, "isbn": []string{"123456"}},
 		Shape:       "/about/:lang/books/:isbn",
+		PathShape:   "/about/:lang/books/:isbn",
+		QueryShape:  "",
 	}},
 	{"/about/en/books/abcdc", Result{
 		URI:         "/about/en/books/abcdc",
@@ -128,6 +144,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{"lang": []string{"en"}, "isbn": []string{"abcdc"}},
 		Shape:       "/about/:lang/books/:isbn",
+		PathShape:   "/about/:lang/books/:isbn",
+		QueryShape:  "",
 	}},
 	// test star swallows stuff
 	{"/about/en/books/foo/bar", Result{
@@ -137,6 +155,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{"lang": []string{"en"}},
 		Shape:       "/about/:lang/books/*",
+		PathShape:   "/about/:lang/books/*",
+		QueryShape:  "",
 	}},
 	// shouldn't match a pattern; keep original
 	{"/about/en/foo/books/bar", Result{
@@ -146,6 +166,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{},
 		PathFields:  url.Values{},
 		Shape:       "/about/en/foo/books/bar",
+		PathShape:   "/about/en/foo/books/bar",
+		QueryShape:  "",
 	}},
 	// no pattern match + query params
 	{"/about/en/foo/books/bar?foo=bar", Result{
@@ -155,6 +177,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{"foo": []string{"bar"}},
 		PathFields:  url.Values{},
 		Shape:       "/about/en/foo/books/bar?foo=?",
+		PathShape:   "/about/en/foo/books/bar",
+		QueryShape:  "foo=?",
 	}},
 	// repeat query params
 	{"/about/fr/books?isbn=123&title=aoeu&isbn=456", Result{
@@ -164,6 +188,8 @@ var lineShapes = []lineShape{
 		QueryFields: url.Values{"isbn": []string{"123", "456"}, "title": []string{"aoeu"}},
 		PathFields:  url.Values{"lang": []string{"fr"}},
 		Shape:       "/about/:lang/books?isbn=?&isbn=?&title=?",
+		PathShape:   "/about/:lang/books",
+		QueryShape:  "isbn=?&isbn=?&title=?",
 	}},
 }
 

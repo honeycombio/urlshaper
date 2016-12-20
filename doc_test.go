@@ -26,8 +26,10 @@ Query: %s
 QueryFields: %+v
 PathFields: %+v
 Shape: %s
+PathShape: %s
+QueryShape: %s
 `, urlStr, result.URI, result.Path, result.Query, result.QueryFields,
-		result.PathFields, result.Shape)
+		result.PathFields, result.Shape, result.PathShape, result.QueryShape)
 
 	// Output:
 	// Original URL: http://example.com:8080/about/english?title=Paradise&state=California
@@ -37,5 +39,7 @@ Shape: %s
 	// QueryFields: map[title:[Paradise] state:[California]]
 	// PathFields: map[lang:[english]]
 	// Shape: /about/:lang?state=?&title=?
+	// PathShape: /about/:lang
+	// QueryShape: state=?&title=?
 
 }
