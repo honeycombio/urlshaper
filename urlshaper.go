@@ -24,6 +24,10 @@ type Result struct {
 	// Shape is the normalized URL, with all variable portions replaced by '?'
 	// and query parameters sorted alphabetically
 	Shape string
+	// PathShape is the path portion of the normalized URL
+	PathShape string
+	// QueryShape is the query portion of the normalized URL
+	QueryShape string
 }
 
 // Pattern is an object that represents a URL path pattern you wish to use when
@@ -132,6 +136,8 @@ func (p *Parser) Parse(rawURL string) (*Result, error) {
 	if queryShape != "" {
 		fullShape += fmt.Sprintf("?%s", queryShape)
 	}
+	r.PathShape = pathShape
+	r.QueryShape = queryShape
 	r.Shape = fullShape
 
 	return r, nil
