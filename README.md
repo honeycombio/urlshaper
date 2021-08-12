@@ -1,6 +1,6 @@
 # urlshaper
 
-[![OSS Lifecycle](https://img.shields.io/osslifecycle/honeycombio/REPO)](https://github.com/honeycombio/home/blob/main/honeycomb-oss-lifecycle-and-practices.md)
+[![OSS Lifecycle](https://img.shields.io/osslifecycle/honeycombio/urlshaper)](https://github.com/honeycombio/home/blob/main/honeycomb-oss-lifecycle-and-practices.md)
 
 
 URL Shaper is a go library that takes a URL path and query and breaks it up into its components and creates a shape.
