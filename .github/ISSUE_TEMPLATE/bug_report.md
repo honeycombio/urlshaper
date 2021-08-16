@@ -17,8 +17,8 @@ Please see our [OSS process document](https://github.com/honeycombio/home/blob/m
 
 **Versions**
 
-Go:
-Urlshaper:
+- Go:
+- Urlshaper:
 
 **Steps to reproduce**
 
